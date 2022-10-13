@@ -1,12 +1,9 @@
+
 import random
-from bke import EvaluationAgent, start
+from bke import EvaluationAgent, start, can_win
 
-
-class MyRandomAgent(EvaluationAgent):
-  def evaluate(self, board, my_symbol, opponent_symbol):
-      return random.randint(1, 500)
-
-
-my_random_agent = MyRandomAgent()
-start(player_o=my_random_agent)    
- 
+def game():
+  print("typ 'a' voor 2 spelers")
+  print("typ 'b' voor slimme tegenstader")
+  print("typ 'c' voor domme tegenstander")
+  i = input("voer hier in:")
