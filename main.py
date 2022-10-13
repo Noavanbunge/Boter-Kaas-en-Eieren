@@ -2,15 +2,7 @@
 import random
 from bke import EvaluationAgent, start, can_win, is_winner, opponent, train, load, start, save
 
-def game():
-  print("typ 'a' voor 2 spelers")
-  print("typ 'b' voor slimme tegenstader")
-  print("typ 'c' voor domme tegenstander")
-  print("typ 'd' voor een tegenstander trainen")
-  i = input("voer hier in:")
-
-
-  class MijnSpeler(EvaluationAgent):
+class MijnSpeler(EvaluationAgent):
     def evaluate(self, board, my_symbol, opponent_symbol):
       getal = 1
       if can_win(board, opponent_symbol):
@@ -56,3 +48,31 @@ def TrainTegenstander():
     my_agent.learning = True
  
     save(my_agent, 'MyAgent_3000')
+
+def game():
+  print("typ 'a' voor 2 spelers")
+  print("typ 'b' voor slimme tegenstader")
+  print("typ 'c' voor domme tegenstander")
+  print("typ 'd' voor een tegenstander trainen")
+  i = input("voer hier in:") 
+   
+mijn_speler = MijnSpeler()
+  random_opponent = MyRandomAgent()
+ 
+  if i == "a":
+    tegenMens()
+ 
+  if i == "b":
+    tegenSlim()
+ 
+  if i == "c":
+    tegenDom()
+
+  if i == "d":
+    TrainTegenstander()
+   
+  else:
+   print("voer a, b, c of d in alsjeblieft")
+   game()
+ 
+game()
