@@ -1,11 +1,12 @@
 
 import random
-from bke import EvaluationAgent, start, can_win
+from bke import EvaluationAgent, start, can_win, is_winner, opponent, train, load, start, save
 
 def game():
   print("typ 'a' voor 2 spelers")
   print("typ 'b' voor slimme tegenstader")
   print("typ 'c' voor domme tegenstander")
+  print("typ 'd' voor een tegenstander trainen")
   i = input("voer hier in:")
 
 
@@ -21,3 +22,18 @@ def game():
       if board[4] == opponent_symbol:
         getal = getal -5
       return getal
+
+class MyRandomAgent(EvaluationAgent):
+  def evaluate(self, board, my_symbol, opponent_symbol):
+    return random.randint(1, 500)
+
+class MyAgent(MLAgent):
+  def evaluate(self, board):
+      if is_winner(board, self.symbol):
+          reward = 1
+      elif is_winner(board, opponent[self.symbol]):
+          reward = -1
+      else:
+          reward = 0
+      return reward
+
