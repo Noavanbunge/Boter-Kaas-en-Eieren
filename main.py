@@ -37,3 +37,22 @@ class MyAgent(MLAgent):
           reward = 0
       return reward
 
+def tegenMens():
+    start()
+
+def tegenSlim():
+    my_agent = load('MyAgent_3000')
+    start(player_o=my_agent)
+
+def tegenDom():
+  random_opponent = MyRandomAgent()
+  start(player_o=random_opponent)
+
+def TrainTegenstander():
+    my_agent = MyAgent(alpha=0.8, epsilon=0.2)
+   
+    train(my_agent, 3000)
+ 
+    my_agent.learning = True
+ 
+    save(my_agent, 'MyAgent_3000')
