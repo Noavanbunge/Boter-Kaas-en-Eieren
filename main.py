@@ -1,6 +1,6 @@
 
 import random
-from bke import EvaluationAgent, start, can_win, is_winner, opponent, train, load, start, save
+from bke import EvaluationAgent, start, can_win, is_winner, opponent, train, load, start, save, MLAgent, train_and_plot, RandomAgent
 
 class MijnSpeler(EvaluationAgent):
     def evaluate(self, board, my_symbol, opponent_symbol):
@@ -41,9 +41,18 @@ def tegenDom():
   start(player_o=random_opponent)
 
 def TrainTegenstander():
-    my_agent = MyAgent(alpha=0.8, epsilon=0.2)
+    random.seed(1)
+ 
+    my_agent = MyAgent(alpha=0.2, epsilon=0.8)
+    random_agent = RandomAgent()
    
-    train(my_agent, 3000)
+    train_and_plot(
+    agent=my_agent,
+    validation_agent=random_agent,
+    iterations=50,
+    trainings=100,
+    validations=1000)
+ 
  
     my_agent.learning = True
  
@@ -56,7 +65,7 @@ def game():
   print("typ 'd' voor een tegenstander trainen")
   i = input("voer hier in:") 
    
-mijn_speler = MijnSpeler()
+  mijn_speler = MijnSpeler()
   random_opponent = MyRandomAgent()
  
   if i == "a":
